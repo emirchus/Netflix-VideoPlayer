@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:screen/screen.dart';
+import 'package:brightness_volume/brightness_volume.dart';
 
 
 class BrightnessBar extends StatefulWidget {
@@ -19,13 +19,9 @@ class _BrightnessBarState extends State<BrightnessBar> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  initPlatformState() async {
-    double brightness = await Screen.brightness;
-    setState(() {
-      this.brightness = brightness * 10;
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+      brightness = ((await BVUtils.brightness).clamp(0.0, 1.0) * 100);
+      setState(() {});
     });
   }
   @override
@@ -56,6 +52,7 @@ class _BrightnessBarState extends State<BrightnessBar> {
                   setState(() {
                     brightness = value;
                   });
+                  BVUtils.setBrightness(value / 100);
                 },
               ),
             ),

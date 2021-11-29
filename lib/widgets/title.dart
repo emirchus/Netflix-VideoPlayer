@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TitleNetflix extends StatelessWidget {
 
@@ -12,7 +13,7 @@ class TitleNetflix extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: Offset(0,  (animation.value - 1) * 10),
+      offset: Offset(0, (animation.value - 1) * 10),
       child: Opacity(
         opacity: animation.value,
         child: Align(
@@ -31,7 +32,9 @@ class TitleNetflix extends StatelessWidget {
               direction: Axis.horizontal,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(flex: 1, child: IconButton(onPressed: toggle, icon: const Icon(Icons.chevron_left_rounded, color: Colors.white), splashRadius: 20,)),
+                Flexible(flex: 1, child: IconButton(onPressed: () async {
+                  Navigator.pop(context);
+                }, icon: const Icon(Icons.chevron_left_rounded, color: Colors.white), splashRadius: 20,)),
                 Flexible(
                   flex: 2,
                   child: Text(title, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white),),

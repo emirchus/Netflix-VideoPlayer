@@ -11,12 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  video_player: ^2.2.5
+  video_player: ^2.2.7
   intl: ^0.17.0
-  screen:
-    git:
-      url: https://github.com/arashgm/flutter_screen.git
-      ref: master
+  http: ^0.13.4
+  brightness_volume: ^1.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutternetflix/widgets/button.dart';
 
 
@@ -31,7 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisSize: MainAxisSize.max,
           children: [
             const Image(image: AssetImage("assets/logo.png"), width: 200,),
-            ButtonComponent("INICIAR", Icons.play_arrow, onTap: () => Navigator.pushNamed(context, "/netflix"),)
+            Center(child: ButtonComponent("INICIAR", Icons.play_arrow, onTap: () async {
+              await Navigator.pushNamed(context, "/netflix");
+              await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+              await SystemChrome.setPreferredOrientations([
+                DeviceOrientation.portraitUp,
+                DeviceOrientation.portraitDown,
+              ]);
+            }))
           ],
         ),
       ),

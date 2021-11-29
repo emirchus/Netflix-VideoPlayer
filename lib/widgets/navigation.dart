@@ -48,6 +48,13 @@ class _NavigationNetflixState extends State<NavigationNetflix> {
 
     var diff = DateTime.now().subtract(videoDuration).difference(_lastConso).abs();
 
+    var totalBuffered = widget.controller.value.buffered.map((e) => e.end.inMilliseconds);
+    var bufferedSize = totalBuffered.isEmpty ? 0 : totalBuffered.reduce((a, b) => a + b);
+
+    var buffered = ((100 * bufferedSize) / videoDuration.inMilliseconds).clamp(0, 100);
+
+    final size = MediaQuery.of(context).size;
+
     return Transform.translate(
       offset: Offset(0,  (1 - widget.animation.value) * 10),
       child: Opacity(
@@ -75,20 +82,39 @@ class _NavigationNetflixState extends State<NavigationNetflix> {
                   children: [
                     Flexible(
                       flex: 1,
-                      child: SliderTheme(
-                        data: const SliderThemeData(
-                          overlayColor: Colors.transparent,
-                          overlayShape: RoundSliderOverlayShape(overlayRadius: 0)
-                        ),
-                        child: Slider(
-                          value: widget.controller.value.isInitialized ? ((100 * currentPosition.inMilliseconds) / videoDuration.inMilliseconds).clamp(0.0, 100.0) : 0,
-                          min: 0,
-                          max: 100,
-                          activeColor: const Color(0xffE50914),
-                          onChanged: (value) {
-                            widget.controller.seekTo(Duration(milliseconds: ((videoDuration.inMilliseconds / 100) * value).round()));
-                          },
-                        ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: 8,
+                            left: 10,
+                            width: (size.width * (buffered / 100)).clamp(0.0, size.width - 110),
+                            child: Container(
+                              height: 5,
+                              decoration: BoxDecoration(
+                                color: Colors.white54,
+                                borderRadius: BorderRadius.circular(5)
+                              ),
+                            ),
+                          ),
+                          SliderTheme(
+                            data: const SliderThemeData(
+                              overlayColor: Colors.transparent,
+                              overlayShape: RoundSliderOverlayShape(overlayRadius: 0),
+                            ),
+                            child: Slider(
+                              value: widget.controller.value.isInitialized ? ((100 * currentPosition.inMilliseconds) / videoDuration.inMilliseconds).clamp(0.0, 100.0) : 0,
+                              min: 0,
+                              max: 100,
+                              activeColor: const Color(0xffE50914),
+                              onChanged: (value) {
+                                widget.controller.seekTo(Duration(milliseconds: ((videoDuration.inMilliseconds / 100) * value).round()));
+                                if(!widget.controller.value.isPlaying) {
+                                  widget.controller.play();
+                                }
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Text(durationString(diff), style: const TextStyle(color: Colors.white),)

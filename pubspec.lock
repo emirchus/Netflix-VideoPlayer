@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  brightness_volume:
+    dependency: "direct main"
+    description:
+      name: brightness_volume
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   characters:
     dependency: transitive
     description:
@@ -49,14 +56,14 @@ packages:
       name: csslib
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.0"
+    version: "0.17.1"
   cupertino_icons:
     dependency: "direct main"
     description:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   fake_async:
     dependency: transitive
     description:
@@ -93,6 +100,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -135,15 +156,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
-  screen:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: c656ee026af199d837f983e4a12816e656bcf750
-      url: "https://github.com/arashgm/flutter_screen.git"
-    source: git
-    version: "0.0.6"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -211,7 +223,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.5"
+    version: "2.2.7"
   video_player_platform_interface:
     dependency: transitive
     description:

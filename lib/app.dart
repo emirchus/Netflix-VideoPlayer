@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/":    (_) => const SplashScreen(),
-        "/netflix": (_) => const NetflixVideoPlayer()
+        "/netflix": (_) => const VideoScreen()
       },
     );
   }

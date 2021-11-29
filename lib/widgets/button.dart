@@ -19,6 +19,8 @@ class ButtonComponent extends StatelessWidget {
       ),
       onPressed: onTap,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon),
           Text(text)
